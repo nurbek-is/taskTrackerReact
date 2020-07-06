@@ -5,6 +5,10 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
+      backlog:["Chat","Rest","Implement REST backend"],
+      todo:["JS Code", "HTML","Fix HTML code"],
+      progress:["React"],
+      done:["Babel",'Reddux'],
     }
   }
 
@@ -13,34 +17,50 @@ render () {
     <div className="container">
       <div className="box backlog">
       <div className='header card'>Backlog</div>
-      <div className='card'>Implement Chat</div>
-      <div className='card'>Implement Chat</div>
-      <div className='card'>Implement REST backend</div>
+      {this.state.backlog.map(card => {
+        return (
+         <React.Fragment>
+          <div className='card'>{card}</div>
+         </React.Fragment> 
+        )
+      })}
       <div className='add-card'> + Add Card</div>
     </div>
 
       <div className="box todo">
       <div className='header card'>To Do</div>
-      <div className='card'>Implement Chat</div>
-      <div className='card'>Fix JS code</div>
-      <div className='card'>Clean HTML</div>
+      {this.state.todo.map(card => {
+        return (
+         <React.Fragment>
+          <div className='card'>{card}</div>
+         </React.Fragment> 
+        )
+      })}
       <div className='add-card'> + Add Card</div>
       </div>
       
       <div className="box progress">
       <div className='header card'>Progress</div>
-      <div className='card'>Implement Chat</div>
-      <div className='card'>Fix JS code</div>
-      <div className='card'>Clean HTML</div>
+      {this.state.progress.map(card => {
+        return (
+         <React.Fragment>
+          <div className='card'>{card}</div>
+         </React.Fragment> 
+        )
+      })}
       <div className='add-card'> + Add Card</div>
       </div>
 
       <div className="box done">
       <div className='header card'>Done</div>
-      <div className='card'>Implement Chat</div>
-      <div className='card'>Fix JS code</div>
-      <div className='card'>Clean HTML</div>
-      <div className='add-card'> + Add Card</div>
+      {this.state.done.map(card => {
+        return (
+         <React.Fragment>
+          <div className='card'>{card}</div>
+         </React.Fragment> 
+        )
+      })}
+       <div className='add-card'> + Add Card</div>
       </div>
 
     </div>

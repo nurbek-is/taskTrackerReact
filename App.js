@@ -14,24 +14,31 @@ class App extends React.Component {
 addCard = (name) => {
   //get Data from User
   const card = prompt('enter card');
+  if(!card.length) {
+    return
+  }
+
   //get box from state
   const box= this.state[name]
   //add card into into box
   box.push(card);
   this.setState({[name]:box})
+
 }
 
-moveRight = (name,ind) => {
+move = (from,to,ind) => {
   //get box from state
-  const box = this.state[name];
-  const todo = this.state.todo;
+  const boxFrom = this.state[from];
+  const boxTo = this.state[to];
   //add card into next box
-  todo.push(box[ind]);
+  boxTo.push(boxFrom[ind]);
   //remove card from the current box
-  box.splice(ind,1)
+  boxFrom.splice(ind,1)
   //Setting State
-  this.setState({todo,[name]:box})
+  this.setState({[from]:boxFrom,[to]:boxTo})
 }
+
+
 render () {
   return (
     <div className="container">
@@ -40,7 +47,7 @@ render () {
       {this.state.backlog.map((card,ind) => { 
         return  (<div key={String(ind)} className='card'>
         {card}
-      <span onClick={() => this.moveRight('backlog', ind)} className="move-right">right</span>
+      <span onClick={() => this.move('backlog','todo', ind)} className="move-right">right</span>
         </div>
       )
       })}
@@ -50,9 +57,9 @@ render () {
       <div className='header card'>To Do</div>
       {this.state.todo.map((card,ind) => { 
         return  (<div key={String(ind)} className='card'>
-        <span className="move-left">left</span>
+        <span onClick={() => this.move('todo','backlog', ind)} className="move-left">left</span>
         {card}
-        <span className="move-right">right</span>
+        <span onClick={() => this.move('todo','progress', ind)} className="move-right">right</span>
         </div>
       )
       })}
@@ -63,9 +70,9 @@ render () {
       <div className='header card'>Progress</div>
       {this.state.progress.map((card,ind) => { 
         return  (<div key={String(ind)} className='card'>
-        <span className="move-left">left</span>
+        <span onClick={() => this.move('progress','todo', ind)} className="move-left">left</span>
         {card}
-        <span className="move-right">right</span>
+        <span onClick={() => this.move('progress','done', ind)} className="move-right">right</span>
         </div>
       )
       })}
@@ -76,9 +83,8 @@ render () {
       <div className='header card'>Done</div>
       {this.state.done.map((card,ind) => { 
         return  (<div key={String(ind)} className='card'>
-        <span className="move-left">left</span>
+        <span onClick={() => this.move('done','progress', ind)} className="move-left">left</span>
         {card}
-        <span className="move-right">right</span>
         </div>
       )
       })}

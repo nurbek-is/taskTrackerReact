@@ -11,7 +11,10 @@ class App extends React.Component {
       done:["Babel",'Reddux'],
     }
   }
-
+addCard = (name) => {
+  const card = prompt('enter card')
+  console.log(card)
+}
 render () {
   return (
     <div className="container">
@@ -24,19 +27,19 @@ render () {
          </React.Fragment> 
         )
       })}
-      <div className='add-card'> + Add Card</div>
+      <div onClick ={()=> this.addCard('backlog')} className='add-card'> + Add Card</div>
     </div>
 
       <div className="box todo">
       <div className='header card'>To Do</div>
       {this.state.todo.map(card => {
         return (
-         <React.Fragment>
-          <div className='card'>{card}</div>
-         </React.Fragment> 
+          <React.Fragment>
+            <div className='card'>{card}</div>
+          </React.Fragment> 
         )
       })}
-      <div className='add-card'> + Add Card</div>
+      <div onClick ={()=>this.addCard('todo')} className='add-card'> + Add Card</div>
       </div>
       
       <div className="box progress">
@@ -48,7 +51,7 @@ render () {
          </React.Fragment> 
         )
       })}
-      <div className='add-card'> + Add Card</div>
+      <div onClick ={()=> this.addCard("progress")} className='add-card'> + Add Card</div>
       </div>
 
       <div className="box done">
@@ -60,7 +63,7 @@ render () {
          </React.Fragment> 
         )
       })}
-       <div className='add-card'> + Add Card</div>
+       <div onClick ={() => this.addCard('done')} className='add-card'> + Add Card</div>
       </div>
 
     </div>

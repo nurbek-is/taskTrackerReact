@@ -44,3 +44,11 @@ body {
 .add-card {
   padding:10px;
 }
+.move-left {
+  float:left;
+  margin-right: 50px;
+}
+
+.move-right {
+  float:right;
+}

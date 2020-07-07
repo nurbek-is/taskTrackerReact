@@ -21,51 +21,34 @@ render () {
       <div className="box backlog">
       <div className='header card'>Backlog</div>
       {this.state.backlog.map(card => {
-        return (
-         <React.Fragment>
-          <div className='card'>{card}</div>
-         </React.Fragment> 
-        )
+        return <div className='card'>{card}</div>
+       
       })}
       <div onClick ={()=> this.addCard('backlog')} className='add-card'> + Add Card</div>
     </div>
-
       <div className="box todo">
       <div className='header card'>To Do</div>
       {this.state.todo.map(card => {
-        return (
-          <React.Fragment>
-            <div className='card'>{card}</div>
-          </React.Fragment> 
-        )
-      })}
+        return <div className='card'>{card}</div>
+        })}
       <div onClick ={()=>this.addCard('todo')} className='add-card'> + Add Card</div>
       </div>
       
       <div className="box progress">
       <div className='header card'>Progress</div>
       {this.state.progress.map(card => {
-        return (
-         <React.Fragment>
-          <div className='card'>{card}</div>
-         </React.Fragment> 
-        )
-      })}
+        return <div className='card'>{card}</div>
+        })}
       <div onClick ={()=> this.addCard("progress")} className='add-card'> + Add Card</div>
       </div>
 
       <div className="box done">
       <div className='header card'>Done</div>
       {this.state.done.map(card => {
-        return (
-         <React.Fragment>
-          <div className='card'>{card}</div>
-         </React.Fragment> 
-        )
-      })}
+        return <div className='card'>{card}</div>
+          })}
        <div onClick ={() => this.addCard('done')} className='add-card'> + Add Card</div>
       </div>
-
     </div>
     );
   }
